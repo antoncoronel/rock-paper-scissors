@@ -5,13 +5,13 @@ function getComputerChoice(){
     let choice = ""
     console.log(rng);
 //return choice
-    if (rng = 0) {
+    if (rng == 0) {
         choice =  "rock";
     }
-    else if (rng=1){
+    else if (rng==1){
         choice ="paper";
     }
-    else if (rng=2){
+    else if (rng==2){
         choice = "scissors";
     }
     console.log(choice);
