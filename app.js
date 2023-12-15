@@ -2,8 +2,7 @@
 function getComputerChoice(){
 //random choice generator
     let rng = Math.floor(Math.random()*3);
-    let choice = ""
-    console.log(rng);
+    let choice = "";
 //return choice
     if (rng == 0) {
         choice =  "rock";
@@ -14,7 +13,6 @@ function getComputerChoice(){
     else if (rng==2){
         choice = "scissors";
     }
-    console.log(choice);
     return choice;
 }
 
@@ -27,45 +25,92 @@ function getPlayerChoice(){
 }
 
 //game function
-function rps_game(user, computer){
+function rps_round(user, computer){
 //compare if else statement
-    console.log(computer);
+    console.log(user);
     while(user ==="rock"){
         if(computer === "rock"){
             console.log("It's a tie.")
-            return "It's a tie.";
+            return "tie";
         }
         else if (computer === "paper"){
             console.log("You Lose! Paper beats rock")
-            return "You Lose! Paper beats rock";
+            return "lose";
         }
         else{
             console.log("You Win! Rock beats scissors")
-            return "You Win! Rock beats scissors";
+            return "win";
         }
     }
     while(user === "paper"){
         if(computer === "rock"){
-            return "You Win! Paper beats rock."
+            console.log("You Win! Paper beats rock");
+            return "win."
         }
         else if(computer === "paper"){
-            return "It's a tie.";
+            console.log("It's a tie.");
+            return "tie";
         }
         else{
-            return "You Lose! Scissors beat paper.";
+            console.log("You Lose! Scissors beat paper.");
+            return "lose";
         }
     }
     while(user === "scissors"){
         if (computer === "rock"){
-            return "You Lose. Rock beats scissors.";
+            console.log("You Lose. Rock beats scissors.");
+            return "lose";
         }
         else if (computer === "paper"){
-            return "You Win! Scissors beats paper";
+            console.log("You Win! Scissors beats paper");
+            return "win";
         }
         else{
-            return "It's a tie.";
+            console.log("It's a tie.");
+            return "tie";
         }
     }
 }
 
-rps_game(user = getPlayerChoice(), computer = getComputerChoice());
+
+function game(){
+    //Best of 5
+    //Game 1
+    //Check if round win
+    //Update score
+    //Check if game win
+    //loop
+    let win = 0;
+    let comp_score = 0;
+    let user_score = 0;
+
+    while (user_score < 3 && comp_score < 3){        
+        let result ="";
+        result = rps_round(user=getPlayerChoice(), getComputerChoice());
+        if (result === "win"){
+            user_score++;
+            win++;
+            console.log(`The score is ${user_score} to ${comp_score}`);
+        }
+        else if (result === "lose"){
+            comp_score++;
+            win++;
+            console.log(`The score is ${user_score} to ${comp_score}`);
+        }
+        else if (result === "tie"){
+            console.log(`Tie, the score is ${user_score} to ${comp_score}`);
+        }
+    }
+    while (user_score == 3 || comp_score == 3){
+        if (user_score > comp_score){
+            console.log(`Congratulation User, you won with a score of ${user_score} to ${comp_score}`);
+            return
+        }
+        else if (comp_score > user_score){
+            console.log(`Better luck next time. You lost ${comp_score} to ${user_score}`);
+            return
+        }
+    }
+}
+
+game();
