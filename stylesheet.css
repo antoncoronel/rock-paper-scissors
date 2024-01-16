@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-color: tomato;
+}
+
+h1 {
+    display: flex;
+    height: 5rem;
+    justify-content: center;
+    text-align: center;
+    padding-top: 3rem;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 4rem;
+    
+}
+
+button  {
+    height: 5rem;
+    width: 10rem;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+#score {
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+    font-weight: bold;
+}
+
+#result {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+#rock {
+    background-color: burlywood;
+}
+
+#paper {
+    background-color: lightblue;
+}
+
+#scissors {
+    background-color: silver;
+}
