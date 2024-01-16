@@ -16,101 +16,77 @@ function getComputerChoice(){
     return choice;
 }
 
-//get player choice
-function getPlayerChoice(){
-//get player input
-    let choice = prompt("Rock, Paper or Scissors?");
-//return player input
-    return choice.toLowerCase();
-}
-
 //game function
 function rps_round(user, computer){
+    const div = document.querySelector('#result');
 //compare if else statement
+    console.log('running');
     console.log(user);
     while(user ==="rock"){
         if(computer === "rock"){
-            console.log("It's a tie.")
+            div.textContent = "It's a tie.";
             return "tie";
         }
         else if (computer === "paper"){
-            console.log("You Lose! Paper beats rock")
-            return "lose";
+            div.textContent = "You Lose! Paper beats rock.";
+            return "lose", computerScore++;
         }
         else{
-            console.log("You Win! Rock beats scissors")
-            return "win";
+            div.textContent = "You Win! Rock beats scissors.";
+            return "win", userScore++;
         }
     }
     while(user === "paper"){
         if(computer === "rock"){
-            console.log("You Win! Paper beats rock");
-            return "win."
+            div.textContent = "You Win! Paper beats rock.";
+            return "win.", userScore++;
         }
         else if(computer === "paper"){
-            console.log("It's a tie.");
+            div.textContent = "It's a tie.";
             return "tie";
         }
         else{
-            console.log("You Lose! Scissors beat paper.");
-            return "lose";
+            div.textContent = "You Lose! Scissors beats paper.";
+            return "lose", computerScore++;
         }
     }
     while(user === "scissors"){
         if (computer === "rock"){
-            console.log("You Lose. Rock beats scissors.");
-            return "lose";
+            div.textContent = "You Lose! Rock beats scissors.";
+            return "lose", computerScore++;
         }
         else if (computer === "paper"){
-            console.log("You Win! Scissors beats paper");
-            return "win";
+            div.textContent = "You Win! Scissors beats paper.";
+            return "win", userScore++;
         }
         else{
-            console.log("It's a tie.");
+            div.textContent = "It's a tie.";
             return "tie";
         }
     }
 }
 
+let computerScore = 0;
+let userScore = 0;
+let btn = document.querySelectorAll('button');
 
-function game(){
-    //Best of 5
-    //Game 1
-    //Check if round win
-    //Update score
-    //Check if game win
-    //loop
-    let win = 0;
-    let comp_score = 0;
-    let user_score = 0;
-
-    while (user_score < 3 && comp_score < 3){        
-        let result ="";
-        result = rps_round(user=getPlayerChoice(), getComputerChoice());
-        if (result === "win"){
-            user_score++;
-            win++;
-            console.log(`The score is ${user_score} to ${comp_score}`);
+btn.forEach((e)=> {
+    e.addEventListener('click', (e) => {
+        let div = document.querySelector('#score');
+        rps_round(e.target.textContent.toLowerCase(), getComputerChoice());
+        div.textContent = 'User: ' + userScore + ' Computer: ' + computerScore;
+        if(userScore < 5 || computerScore < 5){
+            let div = document.querySelector('#result');
+            if (userScore == 5){
+                div.textContent = "You win the game!";
+                userScore = 0;
+                computerScore = 0; 
+            }
+            else if (computerScore == 5){
+                div.textContent = "You lose the game!";
+                userScore = 0;
+                computerScore = 0;
+            }
         }
-        else if (result === "lose"){
-            comp_score++;
-            win++;
-            console.log(`The score is ${user_score} to ${comp_score}`);
-        }
-        else if (result === "tie"){
-            console.log(`Tie, the score is ${user_score} to ${comp_score}`);
-        }
-    }
-    while (user_score == 3 || comp_score == 3){
-        if (user_score > comp_score){
-            console.log(`Congratulation User, you won with a score of ${user_score} to ${comp_score}`);
-            return
-        }
-        else if (comp_score > user_score){
-            console.log(`Better luck next time. You lost ${comp_score} to ${user_score}`);
-            return
-        }
-    }
-}
-
-game();
+    }); 
+});
